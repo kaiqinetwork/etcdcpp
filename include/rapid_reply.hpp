@@ -24,18 +24,18 @@
 
 */
 
-#ifndef __RAPID_REPLY_HPP_INCLUDED__
-#define __RAPID_REPLY_HPP_INCLUDED__
+#ifndef __ETCD_RAPID_REPLY_HPP_INCLUDED__
+#define __ETCD_RAPID_REPLY_HPP_INCLUDED__
 
 #include <iostream>
-#include "etcd.hpp"
+#include "client.hpp"
 
 // JSON PARSER INCLUDES
-#include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/stringbuffer.h"
+#include <rapidjson/document.h>
+#include <rapidjson/writer.h>
+#include <rapidjson/stringbuffer.h>
 
-namespace example {
+namespace etcd {
 /////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -79,11 +79,11 @@ class RapidReply {
 
     etcd::Action GetAction() {
         if (! document_.HasMember(kAction)) {
-            return etcd::Action::UNKNOWN;
+			return etcd::Action::ACTION_UNKNOWN;
         }
         CAM_II iter = kActionMap.find (document_[kAction].GetString());
         if (iter == kActionMap.end()) {
-            return etcd::Action::UNKNOWN;
+			return etcd::Action::ACTION_UNKNOWN;
         }
         return iter->second;
     }
