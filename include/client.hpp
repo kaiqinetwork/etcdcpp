@@ -351,7 +351,7 @@ try:
     std::ostringstream ostr;
     ostr << "http://" << server << ":" << port; 
     url_ = ostr.str();
-    ostr << "/v2/keys";
+    ostr << "/v2/keys/";
     url_prefix_ = ostr.str();
 } catch (const std::exception& e) {
     throw ClientException(e.what());
