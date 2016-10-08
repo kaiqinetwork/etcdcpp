@@ -43,12 +43,14 @@ struct ReplyException : public std::runtime_error {
     virtual const char* what() const throw() {
         std::ostringstream estr;
         estr << msg << "["<< error_code << "]: " << cause;
-        return estr.str().c_str();
+		msgWhat = estr.str().c_str();
+		return msgWhat.c_str();
     }
 
     std::string cause;
     int error_code; 
     std::string msg;
+	mutable std::string msgWhat;
 };
 
 // ---------------------------- TYPES ---------------------------------------

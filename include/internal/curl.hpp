@@ -39,11 +39,13 @@ struct CurlException : public std::runtime_error {
         std::ostringstream estr;
         estr << msg << " [code: " << error_code << "] ";
         estr << curl_easy_strerror(error_code);
-        return estr.str().c_str();
+		msgWhat = estr.str();
+		return msgWhat.c_str();
     }
 
     CURLcode error_code; 
     std::string msg;
+	mutable std::string msgWhat;
 };
 
 typedef std::map<std::string, std::string> CurlOptions;
